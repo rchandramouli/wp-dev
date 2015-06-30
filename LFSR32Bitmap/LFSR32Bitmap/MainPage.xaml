@@ -1,0 +1,108 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:VisualBasic="clr-namespace:Microsoft.VisualBasic"
+    x:Class="LFSR32Bitmap.MainPage"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="RGB LFSR32 PAINTER" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="SETTINGS" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="12,141,12,10" Grid.RowSpan="2">
+            <Button x:Name="btnPaint" Content="Paint!" HorizontalAlignment="Left" Height="63" Margin="0,555,0,-1" VerticalAlignment="Top" Width="456" Background="White" Foreground="Black" BorderThickness="0"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" Text="Red, Green, Blue LFSR 24-bit seeds" VerticalAlignment="Top"/>
+            <Slider x:Name="sldRed" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Height="85" Width="361" Maximum="16777215" Minimum="1" SmallChange="1" Value="1048575" Background="#FF404040" Foreground="Red"/>
+            <Slider x:Name="sldGreen" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="85" Width="361" Maximum="16777215" Minimum="1" SmallChange="1" Value="1048575" Background="#FF404040" Foreground="#FF00E500"/>
+            <Slider x:Name="sldBlue" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Height="85" Width="361" Maximum="16777215" Minimum="1" SmallChange="1" Value="1048575" Background="#FF404040" Foreground="#FF0000E5"/>
+            <TextBlock x:Name="lblRed" HorizontalAlignment="Left" Margin="319,55,0,0" TextWrapping="Wrap" Text="NNN" VerticalAlignment="Top" FontSize="18" TextAlignment="Right" Width="127" FontFamily="Courier New"/>
+            <TextBlock x:Name="lblGreen" HorizontalAlignment="Left" Margin="319,119,0,0" TextWrapping="Wrap" Text="NNN" VerticalAlignment="Top" FontSize="18" TextAlignment="Right" Width="127" FontFamily="Courier New"/>
+            <TextBlock x:Name="lblBlue" HorizontalAlignment="Left" Margin="319,183,0,0" TextWrapping="Wrap" Text="NNN" VerticalAlignment="Top" FontSize="18" TextAlignment="Right" Width="127" FontFamily="Courier New"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,232,0,0" TextWrapping="Wrap" Text="Paint Steps" VerticalAlignment="Top" Width="140"/>
+            <Slider x:Name="sldPaintSteps" HorizontalAlignment="Left" Margin="10,261,0,0" VerticalAlignment="Top" Height="85" Width="361" Maximum="10" Minimum="1" SmallChange="1" Value="1" Background="#FF404040" Foreground="White"/>
+            <TextBlock x:Name="lblPaintSteps" HorizontalAlignment="Left" Margin="319,280,0,0" TextWrapping="Wrap" Text="NNN" VerticalAlignment="Top" FontSize="18" TextAlignment="Right" Width="127" FontFamily="Courier New"/>
+            <Rectangle x:Name="rbit32" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="79,379,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit31" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="116,379,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit30" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="154,379,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit29" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="191,379,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit28" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="229,379,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit27" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="266,379,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit26" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="303,379,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit25" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="340,379,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit24" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="79,416,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit23" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="116,416,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit22" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="154,416,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit21" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="191,416,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit20" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="229,416,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit19" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="266,416,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit18" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="303,416,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit17" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="340,416,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit16" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="79,453,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit15" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="116,453,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit14" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="154,453,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit13" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="191,453,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit12" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="229,453,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit11" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="266,453,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit10" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="303,453,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit9" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="340,453,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit8" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="79,490,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit7" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="116,490,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit6" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="154,490,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit5" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="191,490,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit4" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="229,490,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit3" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="266,490,0,0" Stroke="White" VerticalAlignment="Top" Width="32" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="303,490,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <Rectangle x:Name="rbit1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="32" Margin="340,490,0,0" Stroke="White" VerticalAlignment="Top" Width="33" StrokeThickness="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,327,0,0" TextWrapping="Wrap" Text="LFSR Fibonacci Polynomial" VerticalAlignment="Top" Width="250"/>
+            <TextBlock HorizontalAlignment="Left" Margin="385,492,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="21"/>
+            <TextBlock HorizontalAlignment="Left" Margin="49,380,0,0" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" Width="26"/>
+            <TextBlock HorizontalAlignment="Left" Margin="60,490,0,0" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="26"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
